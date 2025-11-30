@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Two Column Blog - Position</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #9333ea;
+            color: white;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+        main {
+            position: relative;
+            margin-top: 80px;   
+            padding: 20px;
+        }
+
+        article {
+            width: 70%;
+            background: #f3f4f6;
+            padding: 15px;
+        }
+
+        aside {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            width: 25%;
+            background: #e5e7eb;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>My Blog</h2>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Posts</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <article>
+            <h3>Blog Post 1</h3>
+            <p>This is a blog post using position layout.</p>
+
+            <h3>Blog Post 2</h3>
+            <p>This is another blog post example.</p>
+        </article>
+
+        <aside>
+            <h3>About Me</h3>
+            <p>I am a simple blogger.</p>
+
+            <h3>Archive</h3>
+            <ul>
+                <li>January 2025</li>
+                <li>February 2025</li>
+                <li>March 2025</li>
+            </ul>
+        </aside>
+
+    </main>
+
+</body>
+</html>

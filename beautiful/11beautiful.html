@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful CSS Transitions & Animations</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            color: #f9fafb;
+        }
+
+        .box {
+            width: 120px;
+            height: 120px;
+            background: #22c55e;
+            border-radius: 20px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: transform 0.4s, background-color 0.4s, border-radius 0.4s;
+        }
+
+        .box:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #4ade80;
+            border-radius: 40px;
+        }
+
+        .animate {
+            animation: floatBox 2s infinite ease-in-out;
+        }
+
+        @keyframes floatBox {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 999px;
+            border: none;
+            background: #facc15;
+            color: #1f2937;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+        }
+
+        button:hover {
+            background: #eab308;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CSS Transitions & Animations</h1>
+        <p>Hover over the box for a transition. Click the button to toggle floating animation.</p>
+
+        <div id="fancyBox" class="box"></div>
+
+        <button onclick="toggleAnimation()">Toggle Animation</button>
+    </div>
+
+    <script>
+        function toggleAnimation() {
+            let box = document.getElementById("fancyBox");
+            box.classList.toggle("animate");
+        }
+    </script>
+
+</body>
+</html>

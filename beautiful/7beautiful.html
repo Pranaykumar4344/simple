@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful To-Do List</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .todo-card {
+            background: white;
+            width: 320px;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .todo-card h2 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input-row input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 1rem;
+        }
+
+        .input-row button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 999px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .input-row button:hover {
+            background: #1d4ed8;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background: #f3f4f6;
+            padding: 8px 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        li button {
+            background: #dc2626;
+            border: none;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        li button:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="todo-card">
+        <h2>My To-Do List</h2>
+
+        <div class="input-row">
+            <input type="text" id="taskInput">
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let taskText = input.value;
+
+            if (taskText !== "") {
+                let li = document.createElement("li");
+                let span = document.createElement("span");
+                span.innerText = taskText;
+
+                let delBtn = document.createElement("button");
+                delBtn.innerText = "Delete";
+
+                delBtn.addEventListener("click", function () {
+                    li.remove();
+                });
+
+                li.appendChild(span);
+                li.appendChild(delBtn);
+                document.getElementById("taskList").appendChild(li);
+                input.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>

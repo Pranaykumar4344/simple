@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful Tabs</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .tab-card {
+            background: white;
+            width: 380px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .tabs button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            background: #e5e7eb;
+            cursor: pointer;
+            border-radius: 999px;
+            margin: 0 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .tabs button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tab-card">
+
+        <div class="tabs">
+            <button class="tab-btn active" data-target="home">Home</button>
+            <button class="tab-btn" data-target="profile">Profile</button>
+            <button class="tab-btn" data-target="settings">Settings</button>
+        </div>
+
+        <div id="home" class="tab-content active">
+            <p>Welcome to the Home section. This is the default visible panel.</p>
+        </div>
+
+        <div id="profile" class="tab-content">
+            <p>This is your Profile section with personal information.</p>
+        </div>
+
+        <div id="settings" class="tab-content">
+            <p>Here you can change your Settings and preferences.</p>
+        </div>
+
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll(".tab-btn");
+        const panels = document.querySelectorAll(".tab-content");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function () {
+                tabs.forEach(t => t.classList.remove("active"));
+                panels.forEach(p => p.classList.remove("active"));
+
+                this.classList.add("active");
+                document.getElementById(this.getAttribute("data-target")).classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

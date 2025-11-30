@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Image Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at top, #1d4ed8, #020617);
+            color: #e5e7eb;
+            min-height: 100vh;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .gallery-item {
+            flex-basis: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex-basis: calc(50% - 10px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-item {
+                flex-basis: calc(33.333% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Responsive Image Gallery</h1>
+
+    <div class="gallery-container">
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="/beautiful/images/download1.jpg" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (1).jpg" alt="Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (2).jpg" alt="Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (3).jpg" alt="Image 4">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (4).jpg" alt="Image 5">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (5).jpg" alt="Image 6">
+            </div>
+            <div class="gallery-item">
+                <img src="/beautiful/images/download (6).jpg" alt="Image 7">
+            </div>
+            <div class="gallery-item">
+                <img src="beautiful/images/download (7).jpg" alt="Image 8">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

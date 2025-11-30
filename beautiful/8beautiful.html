@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modern Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at top, #38bdf8, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .calculator {
+            background: #020617;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            width: 260px;
+        }
+
+        .display {
+            background: #0b1120;
+            color: #e5e7eb;
+            height: 50px;
+            font-size: 1.5rem;
+            border-radius: 12px;
+            text-align: right;
+            padding: 10px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+        }
+
+        .btn-digit {
+            background: #111827;
+            color: #e5e7eb;
+        }
+
+        .btn-op {
+            background: #1e293b;
+            color: #fbbf24;
+        }
+
+        .btn-equal {
+            background: #22c55e;
+            color: #022c22;
+        }
+
+        .btn-clear {
+            background: #ef4444;
+            color: #fee2e2;
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="display" id="display">0</div>
+
+    <div class="buttons">
+        <button class="btn-clear" data-type="clear">C</button>
+        <button class="btn-op" data-type="op" data-value="/">/</button>
+        <button class="btn-op" data-type="op" data-value="*">*</button>
+        <button class="btn-op" data-type="op" data-value="-">-</button>
+
+        <button class="btn-digit" data-type="digit" data-value="7">7</button>
+        <button class="btn-digit" data-type="digit" data-value="8">8</button>
+        <button class="btn-digit" data-type="digit" data-value="9">9</button>
+        <button class="btn-op" data-type="op" data-value="+">+</button>
+
+        <button class="btn-digit" data-type="digit" data-value="4">4</button>
+        <button class="btn-digit" data-type="digit" data-value="5">5</button>
+        <button class="btn-digit" data-type="digit" data-value="6">6</button>
+        <button class="btn-equal" data-type="equal">=</button>
+
+        <button class="btn-digit" data-type="digit" data-value="1">1</button>
+        <button class="btn-digit" data-type="digit" data-value="2">2</button>
+        <button class="btn-digit" data-type="digit" data-value="3">3</button>
+        <button class="btn-digit" data-type="digit" data-value="0">0</button>
+    </div>
+</div>
+
+<script>
+    let currentInput = "";
+    let previousInput = "";
+    let operation = null;
+
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+
+    function updateDisplay(value) {
+        display.textContent = value;
+    }
+
+    function clearAll() {
+        currentInput = "";
+        previousInput = "";
+        operation = null;
+        updateDisplay("0");
+    }
+
+    function handleDigit(value) {
+        currentInput += value;
+        updateDisplay(currentInput);
+    }
+
+    function handleOperation(op) {
+        if (currentInput === "" && previousInput === "") return;
+        if (previousInput !== "" && currentInput !== "") {
+            calculate();
+        } else if (currentInput !== "") {
+            previousInput = currentInput;
+        }
+        operation = op;
+        currentInput = "";
+    }
+
+    function calculate() {
+        let result;
+        const prev = parseFloat(previousInput);
+        const curr = parseFloat(currentInput);
+        if (isNaN(prev) || isNaN(curr)) return;
+
+        if (operation === "+") result = prev + curr;
+        else if (operation === "-") result = prev - curr;
+        else if (operation === "*") result = prev * curr;
+        else if (operation === "/") {
+            if (curr === 0) {
+                updateDisplay("Error");
+                currentInput = "";
+                previousInput = "";
+                operation = null;
+                return;
+            }
+            result = prev / curr;
+        } else return;
+
+        currentInput = result.toString();
+        previousInput = "";
+        operation = null;
+        updateDisplay(currentInput);
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const type = btn.getAttribute("data-type");
+
+            if (type === "digit") {
+                handleDigit(btn.getAttribute("data-value"));
+            } else if (type === "op") {
+                handleOperation(btn.getAttribute("data-value"));
+            } else if (type === "equal") {
+                if (previousInput !== "" && currentInput !== "") {
+                    calculate();
+                }
+            } else if (type === "clear") {
+                clearAll();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

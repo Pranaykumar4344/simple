@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful DOM Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #9333ea);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            width: 360px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            color: #111827;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #374151;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 999px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1 id="myHeading">Welcome User</h1>
+        <p id="myPara">Click the button to dynamically change this content and its style.</p>
+        <button onclick="changeContent()">Change Content</button>
+    </div>
+
+    <script>
+        function changeContent() {
+            let heading = document.getElementById("myHeading");
+            let para = document.getElementById("myPara");
+
+            heading.innerHTML = "DOM Updated Successfully!";
+            para.innerHTML = "The heading and paragraph were modified using JavaScript.";
+
+            heading.style.color = "white";
+            heading.style.backgroundColor = "#2563eb";
+            heading.style.fontSize = "2rem";
+            heading.style.padding = "10px";
+            heading.style.borderRadius = "12px";
+
+            para.style.color = "white";
+            para.style.backgroundColor = "#22c55e";
+            para.style.fontSize = "1.1rem";
+            para.style.padding = "10px";
+            para.style.borderRadius = "12px";
+        }
+    </script>
+
+</body>
+</html>
